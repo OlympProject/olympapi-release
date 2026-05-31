@@ -550,4 +550,4 @@ Shows platform information, app version, and install ID (useful for support requ
 
 ---
 
-*This manual covers OlympAPI v1.0.0. For the latest updates and bug reports, visit [github.com/olympstack/olympapi](https://github.com/olympstack/olympapi).*
+*This manual covers OlympAPI v1.0.0. For the latest updates and bug reports, visit [github.com/olympstack/olympapi-release](https://github.com/olympstack/olympapi-release).*
