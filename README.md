@@ -2,6 +2,16 @@
 
 Native desktop API client for Windows and Linux.
 
+[![Latest Release](https://img.shields.io/github/v/release/OlympProject/olympapi-release?display_name=release&style=for-the-badge&logo=github)](https://github.com/OlympProject/olympapi-release/releases/latest)
+[![Releases](https://img.shields.io/badge/Releases-All%20versions-1f6feb?style=for-the-badge&logo=github)](https://github.com/OlympProject/olympapi-release/releases)
+[![Download Latest](https://img.shields.io/badge/Download-Latest%20Release-2ea043?style=for-the-badge&logo=github)](https://github.com/OlympProject/olympapi-release/releases/latest)
+[![Website](https://img.shields.io/badge/Website-olympstack.com%2Folympapi-0a66c2?style=for-the-badge&logo=googlechrome&logoColor=white)](https://olympstack.com/olympapi)
+
+[![Validation Suite](https://img.shields.io/badge/Validation%20Suite-Docker%20%2B%20Docs-6f42c1?style=for-the-badge&logo=docker&logoColor=white)](https://github.com/OlympProject/olympapi-release/tree/main/olympapi-validation-suite)
+[![User Manual](https://img.shields.io/badge/User%20Manual-Read-cd7f32?style=for-the-badge&logo=readme&logoColor=white)](USERMANUAL.md)
+[![EULA](https://img.shields.io/badge/EULA-View-8250df?style=for-the-badge&logo=github)](EULA.md)
+[![Packages GHCR](https://img.shields.io/badge/Packages-GHCR-0969da?style=for-the-badge&logo=github)](https://github.com/OlympProject/olympapi-release/pkgs/container/olympapi-validation-suite)
+
 OlympAPI is built for developers who want full control over local workflows, data ownership and Git-based collaboration without forced cloud lock-in.
 
 - Website: [olympstack.com/olympapi](https://olympstack.com/olympapi)
