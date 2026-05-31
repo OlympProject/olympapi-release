@@ -1,0 +1,5 @@
+node_modules/
+dist/
+src/certs/server.key
+src/certs/server.crt
+.env

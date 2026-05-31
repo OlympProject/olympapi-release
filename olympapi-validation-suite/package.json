@@ -1,0 +1,30 @@
+{
+  "name": "olympapi-test-server",
+  "version": "1.0.0",
+  "description": "OlympAPI Test Server — covers all app features for A–Z testing",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "proxy": "ts-node-dev src/proxy.ts",
+    "gen-certs": "node src/certs/gen-certs.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy": "^1.18.1",
+    "multer": "^1.4.5-lts.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/http-proxy": "^1.17.14",
+    "@types/multer": "^1.4.11",
+    "@types/node": "^20.11.5",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "selfsigned": "^2.4.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}

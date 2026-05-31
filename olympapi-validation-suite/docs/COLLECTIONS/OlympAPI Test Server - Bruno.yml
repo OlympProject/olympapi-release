@@ -1,0 +1,1345 @@
+opencollection: 1.0.0
+info:
+  name: OlympAPI Test Server - Bruno
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ''
+      port: ''
+      auth:
+        username: ''
+        password: ''
+      bypassProxy: ''
+  environments:
+    - name: HTTP
+      variables:
+        - name: baseUrl
+          value: http://localhost:3000
+    - name: HTTPS (self-signed)
+      variables:
+        - name: baseUrl
+          value: https://localhost:3443
+items:
+  - info:
+      name: Body
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Accept a raw binary body (any content type, max 10 MB)
+          type: http
+          seq: 5
+          tags:
+            - Body
+        http:
+          method: POST
+          url: '{{baseUrl}}/body/binary'
+          body:
+            type: text
+            data: ''
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Returns size and content type
+            request:
+              url: '{{baseUrl}}/body/binary'
+              method: POST
+              body:
+                type: text
+                data: ''
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Accept multipart/form-data (text fields + file uploads)
+          type: http
+          seq: 4
+          tags:
+            - Body
+        http:
+          method: POST
+          url: '{{baseUrl}}/body/multipart'
+          body:
+            type: multipart-form
+            data:
+              - name: key
+                type: text
+                value: ''
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed fields and file metadata
+            request:
+              url: '{{baseUrl}}/body/multipart'
+              method: POST
+              body:
+                type: multipart-form
+                data:
+                  - name: key
+                    type: text
+                    value: ''
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Mock GraphQL endpoint — echoes query and variables
+          type: http
+          seq: 6
+          tags:
+            - Body
+        http:
+          method: POST
+          url: '{{baseUrl}}/graphql'
+          body:
+            type: json
+            data: |-
+              {
+                "query": "",
+                "variables": {}
+              }
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: GraphQL echo response
+            request:
+              url: '{{baseUrl}}/graphql'
+              method: POST
+              body:
+                type: json
+                data: |-
+                  {
+                    "query": "",
+                    "variables": {}
+                  }
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Parse and echo a JSON body
+          type: http
+          seq: 1
+          tags:
+            - Body
+        http:
+          method: POST
+          url: '{{baseUrl}}/body/json'
+          body:
+            type: json
+            data: '{}'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed JSON body info
+            request:
+              url: '{{baseUrl}}/body/json'
+              method: POST
+              body:
+                type: json
+                data: '{}'
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 400 Response
+            description: Body is not valid JSON
+            request:
+              url: '{{baseUrl}}/body/json'
+              method: POST
+              body:
+                type: json
+                data: '{}'
+            response:
+              status: 400
+              statusText: Bad Request
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Parse and echo a URL-encoded form body
+          type: http
+          seq: 2
+          tags:
+            - Body
+        http:
+          method: POST
+          url: '{{baseUrl}}/body/form'
+          body:
+            type: form-urlencoded
+            data: []
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed form fields
+            request:
+              url: '{{baseUrl}}/body/form'
+              method: POST
+              body:
+                type: form-urlencoded
+                data: []
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Validate required fields name and email
+          type: http
+          seq: 3
+          tags:
+            - Body
+        http:
+          method: POST
+          url: '{{baseUrl}}/body/validate'
+          body:
+            type: json
+            data: |-
+              {
+                "name": "",
+                "email": ""
+              }
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Validation passed
+            request:
+              url: '{{baseUrl}}/body/validate'
+              method: POST
+              body:
+                type: json
+                data: |-
+                  {
+                    "name": "",
+                    "email": ""
+                  }
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 422 Response
+            description: Missing required fields
+            request:
+              url: '{{baseUrl}}/body/validate'
+              method: POST
+              body:
+                type: json
+                data: |-
+                  {
+                    "name": "",
+                    "email": ""
+                  }
+            response:
+              status: 422
+              statusText: Unprocessable Entity
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Auth
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Get current user profile (requires login token)
+          type: http
+          seq: 5
+          tags:
+            - Auth
+        http:
+          method: GET
+          url: '{{baseUrl}}/auth/me'
+          auth:
+            type: bearer
+            token: '{{token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: User profile
+            request:
+              url: '{{baseUrl}}/auth/me'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 401 Response
+            description: Invalid or missing token
+            request:
+              url: '{{baseUrl}}/auth/me'
+              method: GET
+            response:
+              status: 401
+              statusText: Unauthorized
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Login with username and password
+          type: http
+          seq: 4
+          tags:
+            - Auth
+        http:
+          method: POST
+          url: '{{baseUrl}}/auth/login'
+          body:
+            type: json
+            data: |-
+              {
+                "username": "demo",
+                "password": "demo123"
+              }
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Login successful, returns token
+            request:
+              url: '{{baseUrl}}/auth/login'
+              method: POST
+              body:
+                type: json
+                data: |-
+                  {
+                    "username": "demo",
+                    "password": "demo123"
+                  }
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 401 Response
+            description: Invalid credentials
+            request:
+              url: '{{baseUrl}}/auth/login'
+              method: POST
+              body:
+                type: json
+                data: |-
+                  {
+                    "username": "demo",
+                    "password": "demo123"
+                  }
+            response:
+              status: 401
+              statusText: Unauthorized
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Protected by API key (header or query param)
+          type: http
+          seq: 3
+          tags:
+            - Auth
+        http:
+          method: GET
+          url: '{{baseUrl}}/auth/apikey'
+          headers:
+            - name: X-API-Key
+              value: ''
+              disabled: true
+          params:
+            - name: api_key
+              value: ''
+              type: query
+              disabled: true
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Authenticated successfully
+            request:
+              url: '{{baseUrl}}/auth/apikey'
+              method: GET
+              headers:
+                - name: X-API-Key
+                  value: ''
+                  disabled: true
+              params:
+                - name: api_key
+                  value: ''
+                  type: query
+                  disabled: true
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 401 Response
+            description: Missing or invalid API key
+            request:
+              url: '{{baseUrl}}/auth/apikey'
+              method: GET
+              headers:
+                - name: X-API-Key
+                  value: ''
+                  disabled: true
+              params:
+                - name: api_key
+                  value: ''
+                  type: query
+                  disabled: true
+            response:
+              status: 401
+              statusText: Unauthorized
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Protected by Bearer token
+          type: http
+          seq: 1
+          tags:
+            - Auth
+        http:
+          method: GET
+          url: '{{baseUrl}}/auth/bearer'
+          auth:
+            type: bearer
+            token: '{{token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Authenticated successfully
+            request:
+              url: '{{baseUrl}}/auth/bearer'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 401 Response
+            description: Invalid or missing token
+            request:
+              url: '{{baseUrl}}/auth/bearer'
+              method: GET
+            response:
+              status: 401
+              statusText: Unauthorized
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Protected by HTTP Basic auth (admin:password123)
+          type: http
+          seq: 2
+          tags:
+            - Auth
+        http:
+          method: GET
+          url: '{{baseUrl}}/auth/basic'
+          auth:
+            type: basic
+            username: '{{username}}'
+            password: '{{password}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Authenticated successfully
+            request:
+              url: '{{baseUrl}}/auth/basic'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 401 Response
+            description: Invalid or missing credentials
+            request:
+              url: '{{baseUrl}}/auth/basic'
+              method: GET
+            response:
+              status: 401
+              statusText: Unauthorized
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Cookies
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Clear known test cookies
+          type: http
+          seq: 3
+          tags:
+            - Cookies
+        http:
+          method: GET
+          url: '{{baseUrl}}/cookies/clear'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Known test cookies were expired
+            request:
+              url: '{{baseUrl}}/cookies/clear'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Read incoming cookies from the Cookie request header
+          type: http
+          seq: 2
+          tags:
+            - Cookies
+        http:
+          method: GET
+          url: '{{baseUrl}}/cookies/read'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Parsed cookies and the raw Cookie header
+            request:
+              url: '{{baseUrl}}/cookies/read'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Set one or more test cookies from query parameters
+          type: http
+          seq: 1
+          tags:
+            - Cookies
+        http:
+          method: GET
+          url: '{{baseUrl}}/cookies/set'
+          params:
+            - name: session
+              value: abc123
+              type: query
+              description: Session cookie value to set. Defaults to abc123 when no cookie query is provided.
+            - name: maxAge
+              value: '3600'
+              type: query
+              description: Optional Max-Age attribute in seconds.
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Cookies were set through Set-Cookie headers
+            request:
+              url: '{{baseUrl}}/cookies/set'
+              method: GET
+              params:
+                - name: session
+                  value: abc123
+                  type: query
+                  description: Session cookie value to set. Defaults to abc123 when no cookie query is provided.
+                - name: maxAge
+                  value: '3600'
+                  type: query
+                  description: Optional Max-Age attribute in seconds.
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Data
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Get a fixed list of 5 users (deterministic for response-test assertions)
+          type: http
+          seq: 1
+          tags:
+            - Data
+        http:
+          method: GET
+          url: '{{baseUrl}}/data/users'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: List of users
+            request:
+              url: '{{baseUrl}}/data/users'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Get a single user by ID
+          type: http
+          seq: 2
+          tags:
+            - Data
+        http:
+          method: GET
+          url: '{{baseUrl}}/data/user/:id'
+          params:
+            - name: id
+              value: ''
+              type: path
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: User found
+            request:
+              url: '{{baseUrl}}/data/user/:id'
+              method: GET
+              params:
+                - name: id
+                  value: ''
+                  type: path
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 404 Response
+            description: User not found
+            request:
+              url: '{{baseUrl}}/data/user/:id'
+              method: GET
+              params:
+                - name: id
+                  value: ''
+                  type: path
+            response:
+              status: 404
+              statusText: Not Found
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Get user by ID (chaining target — requires Bearer token from /auth/login)
+          type: http
+          seq: 3
+          tags:
+            - Data
+        http:
+          method: GET
+          url: '{{baseUrl}}/users/:id'
+          params:
+            - name: id
+              value: ''
+              type: path
+          auth:
+            type: bearer
+            token: '{{token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: User profile
+            request:
+              url: '{{baseUrl}}/users/:id'
+              method: GET
+              params:
+                - name: id
+                  value: ''
+                  type: path
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 401 Response
+            description: Unauthorized
+            request:
+              url: '{{baseUrl}}/users/:id'
+              method: GET
+              params:
+                - name: id
+                  value: ''
+                  type: path
+            response:
+              status: 401
+              statusText: Unauthorized
+              body:
+                type: text
+                data: ''
+          - name: 404 Response
+            description: User not found
+            request:
+              url: '{{baseUrl}}/users/:id'
+              method: GET
+              params:
+                - name: id
+                  value: ''
+                  type: path
+            response:
+              status: 404
+              statusText: Not Found
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Debug
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Full debug echo — method, headers, query, body, ip
+          type: http
+          seq: 1
+          tags:
+            - Debug
+        http:
+          method: GET
+          url: '{{baseUrl}}/debug/echo'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Complete request snapshot
+            request:
+              url: '{{baseUrl}}/debug/echo'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Headers
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Echo all request headers
+          type: http
+          seq: 1
+          tags:
+            - Headers
+        http:
+          method: GET
+          url: '{{baseUrl}}/headers'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: All request headers
+            request:
+              url: '{{baseUrl}}/headers'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Require X-Custom-Header header
+          type: http
+          seq: 2
+          tags:
+            - Headers
+        http:
+          method: GET
+          url: '{{baseUrl}}/headers/required'
+          headers:
+            - name: X-Custom-Header
+              value: ''
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Header received
+            request:
+              url: '{{baseUrl}}/headers/required'
+              method: GET
+              headers:
+                - name: X-Custom-Header
+                  value: ''
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 400 Response
+            description: Missing X-Custom-Header
+            request:
+              url: '{{baseUrl}}/headers/required'
+              method: GET
+              headers:
+                - name: X-Custom-Header
+                  value: ''
+            response:
+              status: 400
+              statusText: Bad Request
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Echo
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: CORS preflight / OPTIONS echo
+          type: http
+          seq: 7
+          tags:
+            - Echo
+        http:
+          method: OPTIONS
+          url: '{{baseUrl}}/echo'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Allowed methods
+            request:
+              url: '{{baseUrl}}/echo'
+              method: OPTIONS
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Echo DELETE request details
+          type: http
+          seq: 5
+          tags:
+            - Echo
+        http:
+          method: DELETE
+          url: '{{baseUrl}}/echo'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed request info
+            request:
+              url: '{{baseUrl}}/echo'
+              method: DELETE
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Echo GET request details
+          type: http
+          seq: 1
+          tags:
+            - Echo
+        http:
+          method: GET
+          url: '{{baseUrl}}/echo'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed request info
+            request:
+              url: '{{baseUrl}}/echo'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Echo HEAD request (headers only, no body)
+          type: http
+          seq: 6
+          tags:
+            - Echo
+        http:
+          method: HEAD
+          url: '{{baseUrl}}/echo'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Response headers only
+            request:
+              url: '{{baseUrl}}/echo'
+              method: HEAD
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Echo PATCH request details
+          type: http
+          seq: 4
+          tags:
+            - Echo
+        http:
+          method: PATCH
+          url: '{{baseUrl}}/echo'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed request info
+            request:
+              url: '{{baseUrl}}/echo'
+              method: PATCH
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Echo POST request details
+          type: http
+          seq: 2
+          tags:
+            - Echo
+        http:
+          method: POST
+          url: '{{baseUrl}}/echo'
+          body:
+            type: json
+            data: '{}'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed request info
+            request:
+              url: '{{baseUrl}}/echo'
+              method: POST
+              body:
+                type: json
+                data: '{}'
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Echo PUT request details
+          type: http
+          seq: 3
+          tags:
+            - Echo
+        http:
+          method: PUT
+          url: '{{baseUrl}}/echo'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Echoed request info
+            request:
+              url: '{{baseUrl}}/echo'
+              method: PUT
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Status
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Health check
+          type: http
+          seq: 1
+          tags:
+            - Status
+        http:
+          method: GET
+          url: '{{baseUrl}}/health'
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Server is healthy
+            request:
+              url: '{{baseUrl}}/health'
+              method: GET
+            response:
+              status: 200
+              statusText: OK
+              headers:
+                - name: Content-Type
+                  value: application/json
+              body:
+                type: json
+                data: |-
+                  {
+                    "status": "ok",
+                    "version": "1.0.0",
+                    "uptime": 42.5,
+                    "timestamp": ""
+                  }
+      - info:
+          name: Respond after a delay
+          type: http
+          seq: 3
+          tags:
+            - Status
+        http:
+          method: GET
+          url: '{{baseUrl}}/delay/:ms'
+          params:
+            - name: ms
+              value: '0'
+              type: path
+              description: Delay in milliseconds (max 3000)
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Delayed response
+            request:
+              url: '{{baseUrl}}/delay/:ms'
+              method: GET
+              params:
+                - name: ms
+                  value: '0'
+                  type: path
+                  description: Delay in milliseconds (max 3000)
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Respond with the given HTTP status code
+          type: http
+          seq: 2
+          tags:
+            - Status
+        http:
+          method: GET
+          url: '{{baseUrl}}/status/:code'
+          params:
+            - name: code
+              value: '200'
+              type: path
+              description: HTTP status code to return
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Returns the requested status code (actual status varies)
+            request:
+              url: '{{baseUrl}}/status/:code'
+              method: GET
+              params:
+                - name: code
+                  value: '200'
+                  type: path
+                  description: HTTP status code to return
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+  - info:
+      name: Params
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: Echo query parameters
+          type: http
+          seq: 1
+          tags:
+            - Params
+        http:
+          method: GET
+          url: '{{baseUrl}}/params'
+          params:
+            - name: name
+              value: ''
+              type: query
+              disabled: true
+            - name: page
+              value: ''
+              type: query
+              disabled: true
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Received query params
+            request:
+              url: '{{baseUrl}}/params'
+              method: GET
+              params:
+                - name: name
+                  value: ''
+                  type: query
+                  disabled: true
+                - name: page
+                  value: ''
+                  type: query
+                  disabled: true
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+      - info:
+          name: Require name and page query parameters
+          type: http
+          seq: 2
+          tags:
+            - Params
+        http:
+          method: GET
+          url: '{{baseUrl}}/params/required'
+          params:
+            - name: name
+              value: ''
+              type: query
+            - name: page
+              value: ''
+              type: query
+          auth: inherit
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+        examples:
+          - name: 200 Response
+            description: Valid params received
+            request:
+              url: '{{baseUrl}}/params/required'
+              method: GET
+              params:
+                - name: name
+                  value: ''
+                  type: query
+                - name: page
+                  value: ''
+                  type: query
+            response:
+              status: 200
+              statusText: OK
+              body:
+                type: text
+                data: ''
+          - name: 400 Response
+            description: Missing required params
+            request:
+              url: '{{baseUrl}}/params/required'
+              method: GET
+              params:
+                - name: name
+                  value: ''
+                  type: query
+                - name: page
+                  value: ''
+                  type: query
+            response:
+              status: 400
+              statusText: Bad Request
+              body:
+                type: text
+                data: ''
+bundled: true
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
+    exportedAt: '2026-05-28T07:24:37.664Z'
+    exportedUsing: Bruno

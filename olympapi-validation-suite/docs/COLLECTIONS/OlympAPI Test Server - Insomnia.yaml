@@ -1,0 +1,1329 @@
+type: spec.insomnia.rest/5.0
+schema_version: "5.1"
+name: OlympAPI Test Server 1.0.0
+meta:
+  id: wrk_52b24e30908e40aeae4d0990e31c1bd6
+  created: 1779953685541
+  modified: 1779953685541
+  description: ""
+collection:
+  - name: Status
+    meta:
+      id: fld_abd896bb4b89452cadbf5d632deba6a6
+      created: 1779953685556
+      modified: 1779953685556
+      sortKey: -1779953685556
+      description: Health, status codes, and delay
+    children:
+      - url: "{{ _.base_url }}/health"
+        name: Health check
+        meta:
+          id: req_66fe1e242ec14e3fb59a160788bce7e5
+          created: 1779953685648
+          modified: 1779953685648
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685648
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/status/:code"
+        name: Respond with the given HTTP status code
+        meta:
+          id: req_3dbea6e78d964a34be20d7ff259ab6b7
+          created: 1779953685650
+          modified: 1779953685650
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685650
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/delay/:ms"
+        name: Respond after a delay
+        meta:
+          id: req_dd6ebe01f3db48e4addb0ba3105030b5
+          created: 1779953685652
+          modified: 1779953685652
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685652
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Echo
+    meta:
+      id: fld_1cbc4436df3a450ca878cea924e0d598
+      created: 1779953685559
+      modified: 1779953685559
+      sortKey: -1779953685559
+      description: Echo all HTTP methods
+    children:
+      - url: "{{ _.base_url }}/echo"
+        name: Echo GET request details
+        meta:
+          id: req_3f16f5dc3f964ffdb03df9414f0cabdc
+          created: 1779953685625
+          modified: 1779953685625
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685625
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/echo"
+        name: Echo POST request details
+        meta:
+          id: req_2b49032205974f3a91e5c89e67202abe
+          created: 1779953685627
+          modified: 1779953685627
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685627
+        method: POST
+        body:
+          mimeType: application/json
+          text: "{}"
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/echo"
+        name: Echo PUT request details
+        meta:
+          id: req_6de58e0d16e845dd9309e621e8fbf663
+          created: 1779953685629
+          modified: 1779953685629
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685629
+        method: PUT
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/echo"
+        name: Echo PATCH request details
+        meta:
+          id: req_e4410f6d1684423abcadc8766c2558be
+          created: 1779953685632
+          modified: 1779953685632
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685632
+        method: PATCH
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/echo"
+        name: Echo DELETE request details
+        meta:
+          id: req_f284e2f9892a42f49672aeffdc2f6b24
+          created: 1779953685635
+          modified: 1779953685635
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685635
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/echo"
+        name: Echo HEAD request (headers only, no body)
+        meta:
+          id: req_812e4aeebde348d581a9f3a4029d95fb
+          created: 1779953685636
+          modified: 1779953685636
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685636
+        method: HEAD
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/echo"
+        name: CORS preflight / OPTIONS echo
+        meta:
+          id: req_6aab1052c7214520b1c27c0222af3d60
+          created: 1779953685640
+          modified: 1779953685640
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685640
+        method: OPTIONS
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Params
+    meta:
+      id: fld_80b56d7364524b0792ccb03e905bf41f
+      created: 1779953685561
+      modified: 1779953685561
+      sortKey: -1779953685561
+      description: Query parameter testing
+    children:
+      - url: "{{ _.base_url }}/params"
+        name: Echo query parameters
+        meta:
+          id: req_694052510b594049bc2a2f68eeb12641
+          created: 1779953685645
+          modified: 1779953685645
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685645
+        method: GET
+        parameters:
+          - name: name
+            value: string
+            disabled: true
+          - name: page
+            value: "0"
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/params/required"
+        name: Require name and page query parameters
+        meta:
+          id: req_8c0b7bb043204cc3bf25639bc121857c
+          created: 1779953685647
+          modified: 1779953685647
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685647
+        method: GET
+        parameters:
+          - name: name
+            value: string
+            disabled: false
+          - name: page
+            value: "0"
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Headers
+    meta:
+      id: fld_950baff9d25c40d19d36712ea9c5c76e
+      created: 1779953685563
+      modified: 1779953685563
+      sortKey: -1779953685563
+      description: Request header testing
+    children:
+      - url: "{{ _.base_url }}/headers"
+        name: Echo all request headers
+        meta:
+          id: req_683c00e3cee04192adeb72ee08dee48e
+          created: 1779953685642
+          modified: 1779953685642
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685642
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/headers/required"
+        name: Require X-Custom-Header header
+        meta:
+          id: req_1bb089d74cc14847810436aadd842a8c
+          created: 1779953685644
+          modified: 1779953685644
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685644
+        method: GET
+        headers:
+          - name: X-Custom-Header
+            value: string
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Body
+    meta:
+      id: fld_22ee5cd087ed4a8bb80dd0f11621b541
+      created: 1779953685566
+      modified: 1779953685566
+      sortKey: -1779953685566
+      description: Request body testing
+    children:
+      - url: "{{ _.base_url }}/body/json"
+        name: Parse and echo a JSON body
+        meta:
+          id: req_64f1af9f538b4c059540f1d93bc3508c
+          created: 1779953685593
+          modified: 1779953685593
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685593
+        method: POST
+        body:
+          mimeType: application/json
+          text: "{}"
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/body/form"
+        name: Parse and echo a URL-encoded form body
+        meta:
+          id: req_ed88ee94377f4c2eaec472077bce5a9a
+          created: 1779953685595
+          modified: 1779953685595
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685595
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/body/validate"
+        name: Validate required fields name and email
+        meta:
+          id: req_dc48891b06304b5c8e8b763237485829
+          created: 1779953685598
+          modified: 1779953685598
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685598
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "string",
+              "email": "user@example.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/body/multipart"
+        name: Accept multipart/form-data (text fields + file uploads)
+        meta:
+          id: req_d208e5546226472cb60cb15c0a7ca02e
+          created: 1779953685601
+          modified: 1779953685601
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685601
+        method: POST
+        body:
+          mimeType: multipart/form-data
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/body/binary"
+        name: Accept a raw binary body (any content type, max 10 MB)
+        meta:
+          id: req_3584d809d709447eb276626ffa2ad9a1
+          created: 1779953685603
+          modified: 1779953685603
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685603
+        method: POST
+        body:
+          mimeType: application/octet-stream
+        headers:
+          - name: Content-Type
+            value: application/octet-stream
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/graphql"
+        name: Mock GraphQL endpoint — echoes query and variables
+        meta:
+          id: req_e6400f6d26f84adbbd8d7cdbc9ca0a43
+          created: 1779953685606
+          modified: 1779953685606
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685606
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "query": "string",
+              "variables": {}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Auth
+    meta:
+      id: fld_7124a5bd92824eb89e1730601c2b093e
+      created: 1779953685569
+      modified: 1779953685569
+      sortKey: -1779953685569
+      description: Authentication testing
+    children:
+      - url: "{{ _.base_url }}/auth/bearer"
+        name: Protected by Bearer token
+        meta:
+          id: req_020659c4c582410cb169741a17a47b94
+          created: 1779953685579
+          modified: 1779953685579
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685579
+        method: GET
+        authentication:
+          type: bearer
+          token: "{{ _.bearerToken }}"
+          prefix: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/auth/basic"
+        name: Protected by HTTP Basic auth (admin:password123)
+        meta:
+          id: req_03a58131c7f14422bcc3e5a7ee291531
+          created: 1779953685582
+          modified: 1779953685582
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685582
+        method: GET
+        authentication:
+          type: basic
+          username: "{{ _.httpUsername }}"
+          password: "{{ _.httpPassword }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/auth/apikey"
+        name: Protected by API key (header or query param)
+        meta:
+          id: req_cce54cab977e4a2d8c6bb443f8c8514b
+          created: 1779953685584
+          modified: 1779953685584
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685584
+        method: GET
+        parameters:
+          - name: api_key
+            value: string
+            disabled: true
+        headers:
+          - name: X-API-Key
+            value: string
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/auth/login"
+        name: Login with username and password
+        meta:
+          id: req_ef6f9a1f0e204143b46f8b70eb802422
+          created: 1779953685587
+          modified: 1779953685587
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685587
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "username": "demo",
+              "password": "demo123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/auth/me"
+        name: Get current user profile (requires login token)
+        meta:
+          id: req_f425a4e68f214164afe266f7c4011489
+          created: 1779953685590
+          modified: 1779953685590
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685590
+        method: GET
+        authentication:
+          type: bearer
+          token: "{{ _.bearerToken }}"
+          prefix: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Data
+    meta:
+      id: fld_d1a1db3e2ac24ad18dff4bd223695c3d
+      created: 1779953685572
+      modified: 1779953685572
+      sortKey: -1779953685572
+      description: Deterministic data for response-test assertions
+    children:
+      - url: "{{ _.base_url }}/data/users"
+        name: Get a fixed list of 5 users (deterministic for response-test assertions)
+        meta:
+          id: req_21d70cca5d6f442fab4b04bb06f68e33
+          created: 1779953685616
+          modified: 1779953685616
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685616
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/data/user/:id"
+        name: Get a single user by ID
+        meta:
+          id: req_6f1270649acb4c30b6d13261273435c5
+          created: 1779953685619
+          modified: 1779953685619
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685619
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/users/:id"
+        name: Get user by ID (chaining target — requires Bearer token from /auth/login)
+        meta:
+          id: req_fbb3c852c440402caafc936b577e7602
+          created: 1779953685621
+          modified: 1779953685621
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685621
+        method: GET
+        authentication:
+          type: bearer
+          token: "{{ _.bearerToken }}"
+          prefix: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Debug
+    meta:
+      id: fld_a5eb8acefd5d459fb8eca509c0163b5f
+      created: 1779953685575
+      modified: 1779953685575
+      sortKey: -1779953685575
+      description: Full debug echo for script testing
+    children:
+      - url: "{{ _.base_url }}/debug/echo"
+        name: Full debug echo — method, headers, query, body, ip
+        meta:
+          id: req_1ccf74670240459ca21cf2807cfbd073
+          created: 1779953685623
+          modified: 1779953685623
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685623
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Cookies
+    meta:
+      id: fld_019dab3b0f464762bdffe3269a190771
+      created: 1779953685577
+      modified: 1779953685577
+      sortKey: -1779953685577
+      description: Set-Cookie and Cookie header testing
+    children:
+      - url: "{{ _.base_url }}/cookies/set"
+        name: Set one or more test cookies from query parameters
+        meta:
+          id: req_acfce1bac6564a5ebaed36d257b7696f
+          created: 1779953685610
+          modified: 1779953685610
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685610
+        method: GET
+        parameters:
+          - name: session
+            value: abc123
+            disabled: true
+          - name: maxAge
+            value: "3600"
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/cookies/read"
+        name: Read incoming cookies from the Cookie request header
+        meta:
+          id: req_fb807a0d2f9f43c4a47ff02a03d3f6e2
+          created: 1779953685613
+          modified: 1779953685613
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685613
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/cookies/clear"
+        name: Clear known test cookies
+        meta:
+          id: req_becceb8df2ed4298921696d753cbf207
+          created: 1779953685615
+          modified: 1779953685615
+          isPrivate: false
+          description: ""
+          sortKey: -1779953685615
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_f22a862c70fb07270ad4788944e3a8476f9a7ac9
+    created: 1779953685785
+    modified: 1779953685785
+environments:
+  name: Base environment
+  meta:
+    id: env_93f0ef857ca34ef28fe6399d36f08e70
+    created: 1779953685549
+    modified: 1779953685549
+    isPrivate: false
+  data:
+    base_url: "{{ _.scheme }}://{{ _.host }}{{ _.base_path }}"
+  subEnvironments:
+    - name: OpenAPI env localhost:3000
+      meta:
+        id: env_5dbb7e474ab34cb089388a193d127a64
+        created: 1779953685551
+        modified: 1779953685551
+        isPrivate: false
+        sortKey: 1779953685551
+      data:
+        scheme: http
+        base_path: ""
+        host: localhost:3000
+        xApiKey: xApiKey
+        apiKey: apiKey
+        httpUsername: username
+        httpPassword: password
+        bearerToken: bearerToken
+    - name: OpenAPI env localhost:3443
+      meta:
+        id: env_2fd65af252174bc79c04a638f8696dd8
+        created: 1779953685553
+        modified: 1779953685553
+        isPrivate: false
+        sortKey: 1779953685554
+      data:
+        scheme: https
+        base_path: ""
+        host: localhost:3443
+        xApiKey: xApiKey
+        apiKey: apiKey
+        httpUsername: username
+        httpPassword: password
+        bearerToken: bearerToken
+spec:
+  contents:
+    openapi: 3.0.0
+    info:
+      title: OlympAPI Test Server
+      version: 1.0.0
+      description: "A dedicated test server covering all OlympAPI features: HTTP
+        methods, auth, body types, chaining, scripts, SSL, and proxy."
+    servers:
+      - url: http://localhost:3000
+        description: HTTP
+      - url: https://localhost:3443
+        description: HTTPS (self-signed)
+    components:
+      securitySchemes:
+        BearerAuth:
+          type: http
+          scheme: bearer
+          bearerFormat: token
+          description: Use "test-token-123" for /auth/bearer, or the token from POST
+            /auth/login for /auth/me and /users/:id
+        BasicAuth:
+          type: http
+          scheme: basic
+          description: Use admin:password123
+        ApiKeyHeader:
+          type: apiKey
+          in: header
+          name: X-API-Key
+          description: Use "api-key-xyz"
+        ApiKeyQuery:
+          type: apiKey
+          in: query
+          name: api_key
+          description: Use "api-key-xyz"
+    tags:
+      - name: Status
+        description: Health, status codes, and delay
+      - name: Echo
+        description: Echo all HTTP methods
+      - name: Params
+        description: Query parameter testing
+      - name: Headers
+        description: Request header testing
+      - name: Body
+        description: Request body testing
+      - name: Auth
+        description: Authentication testing
+      - name: Data
+        description: Deterministic data for response-test assertions
+      - name: Debug
+        description: Full debug echo for script testing
+      - name: Cookies
+        description: Set-Cookie and Cookie header testing
+    paths:
+      /auth/bearer:
+        get:
+          summary: Protected by Bearer token
+          tags:
+            - Auth
+          responses:
+            "200":
+              description: Authenticated successfully
+            "401":
+              description: Invalid or missing token
+      /auth/basic:
+        get:
+          summary: Protected by HTTP Basic auth (admin:password123)
+          tags:
+            - Auth
+          responses:
+            "200":
+              description: Authenticated successfully
+            "401":
+              description: Invalid or missing credentials
+      /auth/apikey:
+        get:
+          summary: Protected by API key (header or query param)
+          tags:
+            - Auth
+          parameters:
+            - in: header
+              name: X-API-Key
+              schema:
+                type: string
+            - in: query
+              name: api_key
+              schema:
+                type: string
+          responses:
+            "200":
+              description: Authenticated successfully
+            "401":
+              description: Missing or invalid API key
+      /auth/login:
+        post:
+          summary: Login with username and password
+          tags:
+            - Auth
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  required:
+                    - username
+                    - password
+                  properties:
+                    username:
+                      type: string
+                      example: demo
+                    password:
+                      type: string
+                      example: demo123
+          responses:
+            "200":
+              description: Login successful, returns token
+            "401":
+              description: Invalid credentials
+      /auth/me:
+        get:
+          summary: Get current user profile (requires login token)
+          tags:
+            - Auth
+          responses:
+            "200":
+              description: User profile
+            "401":
+              description: Invalid or missing token
+      /body/json:
+        post:
+          summary: Parse and echo a JSON body
+          tags:
+            - Body
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+          responses:
+            "200":
+              description: Echoed JSON body info
+            "400":
+              description: Body is not valid JSON
+      /body/form:
+        post:
+          summary: Parse and echo a URL-encoded form body
+          tags:
+            - Body
+          requestBody:
+            required: true
+            content:
+              application/x-www-form-urlencoded:
+                schema:
+                  type: object
+                  additionalProperties:
+                    type: string
+          responses:
+            "200":
+              description: Echoed form fields
+      /body/validate:
+        post:
+          summary: Validate required fields name and email
+          tags:
+            - Body
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  required:
+                    - name
+                    - email
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                      format: email
+          responses:
+            "200":
+              description: Validation passed
+            "422":
+              description: Missing required fields
+      /body/multipart:
+        post:
+          summary: Accept multipart/form-data (text fields + file uploads)
+          tags:
+            - Body
+          requestBody:
+            required: true
+            content:
+              multipart/form-data:
+                schema:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+          responses:
+            "200":
+              description: Echoed fields and file metadata
+      /body/binary:
+        post:
+          summary: Accept a raw binary body (any content type, max 10 MB)
+          tags:
+            - Body
+          requestBody:
+            required: true
+            content:
+              application/octet-stream:
+                schema:
+                  type: string
+                  format: binary
+          responses:
+            "200":
+              description: Returns size and content type
+      /graphql:
+        post:
+          summary: Mock GraphQL endpoint — echoes query and variables
+          tags:
+            - Body
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  required:
+                    - query
+                  properties:
+                    query:
+                      type: string
+                    variables:
+                      type: object
+          responses:
+            "200":
+              description: GraphQL echo response
+      /cookies/set:
+        get:
+          summary: Set one or more test cookies from query parameters
+          tags:
+            - Cookies
+          parameters:
+            - in: query
+              name: session
+              schema:
+                type: string
+                example: abc123
+              description: Session cookie value to set. Defaults to abc123 when no cookie
+                query is provided.
+            - in: query
+              name: maxAge
+              schema:
+                type: integer
+                example: 3600
+              description: Optional Max-Age attribute in seconds.
+          responses:
+            "200":
+              description: Cookies were set through Set-Cookie headers
+      /cookies/read:
+        get:
+          summary: Read incoming cookies from the Cookie request header
+          tags:
+            - Cookies
+          responses:
+            "200":
+              description: Parsed cookies and the raw Cookie header
+      /cookies/clear:
+        get:
+          summary: Clear known test cookies
+          tags:
+            - Cookies
+          responses:
+            "200":
+              description: Known test cookies were expired
+      /data/users:
+        get:
+          summary: Get a fixed list of 5 users (deterministic for response-test
+            assertions)
+          tags:
+            - Data
+          responses:
+            "200":
+              description: List of users
+      /data/user/{id}:
+        get:
+          summary: Get a single user by ID
+          tags:
+            - Data
+          parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                type: integer
+          responses:
+            "200":
+              description: User found
+            "404":
+              description: User not found
+      /users/{id}:
+        get:
+          summary: Get user by ID (chaining target — requires Bearer token from
+            /auth/login)
+          tags:
+            - Data
+          parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                type: string
+          responses:
+            "200":
+              description: User profile
+            "401":
+              description: Unauthorized
+            "404":
+              description: User not found
+      /debug/echo:
+        get:
+          summary: Full debug echo — method, headers, query, body, ip
+          tags:
+            - Debug
+          responses:
+            "200":
+              description: Complete request snapshot
+      /echo:
+        get:
+          summary: Echo GET request details
+          tags:
+            - Echo
+          responses:
+            "200":
+              description: Echoed request info
+        post:
+          summary: Echo POST request details
+          tags:
+            - Echo
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+          responses:
+            "200":
+              description: Echoed request info
+        put:
+          summary: Echo PUT request details
+          tags:
+            - Echo
+          responses:
+            "200":
+              description: Echoed request info
+        patch:
+          summary: Echo PATCH request details
+          tags:
+            - Echo
+          responses:
+            "200":
+              description: Echoed request info
+        delete:
+          summary: Echo DELETE request details
+          tags:
+            - Echo
+          responses:
+            "200":
+              description: Echoed request info
+        head:
+          summary: Echo HEAD request (headers only, no body)
+          tags:
+            - Echo
+          responses:
+            "200":
+              description: Response headers only
+        options:
+          summary: CORS preflight / OPTIONS echo
+          tags:
+            - Echo
+          responses:
+            "200":
+              description: Allowed methods
+      /headers:
+        get:
+          summary: Echo all request headers
+          tags:
+            - Headers
+          responses:
+            "200":
+              description: All request headers
+      /headers/required:
+        get:
+          summary: Require X-Custom-Header header
+          tags:
+            - Headers
+          parameters:
+            - in: header
+              name: X-Custom-Header
+              required: true
+              schema:
+                type: string
+          responses:
+            "200":
+              description: Header received
+            "400":
+              description: Missing X-Custom-Header
+      /params:
+        get:
+          summary: Echo query parameters
+          tags:
+            - Params
+          parameters:
+            - in: query
+              name: name
+              schema:
+                type: string
+            - in: query
+              name: page
+              schema:
+                type: integer
+          responses:
+            "200":
+              description: Received query params
+      /params/required:
+        get:
+          summary: Require name and page query parameters
+          tags:
+            - Params
+          parameters:
+            - in: query
+              name: name
+              required: true
+              schema:
+                type: string
+            - in: query
+              name: page
+              required: true
+              schema:
+                type: integer
+          responses:
+            "200":
+              description: Valid params received
+            "400":
+              description: Missing required params
+      /health:
+        get:
+          summary: Health check
+          tags:
+            - Status
+          responses:
+            "200":
+              description: Server is healthy
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ok
+                      version:
+                        type: string
+                        example: 1.0.0
+                      uptime:
+                        type: number
+                        example: 42.5
+                      timestamp:
+                        type: string
+                        format: date-time
+      /status/{code}:
+        get:
+          summary: Respond with the given HTTP status code
+          tags:
+            - Status
+          parameters:
+            - in: path
+              name: code
+              required: true
+              schema:
+                type: integer
+                minimum: 200
+                maximum: 599
+              description: HTTP status code to return
+          responses:
+            "200":
+              description: Returns the requested status code (actual status varies)
+      /delay/{ms}:
+        get:
+          summary: Respond after a delay
+          tags:
+            - Status
+          parameters:
+            - in: path
+              name: ms
+              required: true
+              schema:
+                type: integer
+                minimum: 0
+                maximum: 3000
+              description: Delay in milliseconds (max 3000)
+          responses:
+            "200":
+              description: Delayed response
+  meta:
+    id: spc_94bfd4c26b6a44ae99b37a9c239ce982
+    created: 1779953685543
+    modified: 1779953685544

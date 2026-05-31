@@ -1,0 +1,2371 @@
+{
+  "info": {
+    "_postman_id": "eba562a9-d1e9-40dc-b891-ce09911f5e26",
+    "name": "OlympAPI Test Server",
+    "description": "A dedicated test server covering all OlympAPI features: HTTP methods, auth, body types, chaining, scripts, SSL, and proxy.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55028696",
+    "_collection_link": "https://go.postman.co/collection/55028696-eba562a9-d1e9-40dc-b891-ce09911f5e26?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "bearer",
+          "item": [
+            {
+              "name": "Protected by Bearer token",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/bearer",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "bearer"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Authenticated successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/bearer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "bearer"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Invalid or missing token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/bearer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "bearer"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "basic",
+          "item": [
+            {
+              "name": "Protected by HTTP Basic auth (admin:password123)",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/basic",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "basic"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Authenticated successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/basic",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "basic"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Invalid or missing credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/basic",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "basic"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "apikey",
+          "item": [
+            {
+              "name": "Protected by API key (header or query param)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-API-Key",
+                    "value": "string"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/apikey?api_key=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "apikey"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Authenticated successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-API-Key",
+                        "value": "string"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/apikey?api_key=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "apikey"
+                      ],
+                      "query": [
+                        {
+                          "key": "api_key",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-API-Key",
+                        "value": "string"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/apikey?api_key=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "apikey"
+                      ],
+                      "query": [
+                        {
+                          "key": "api_key",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "item": [
+            {
+              "name": "Login with username and password",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"demo\",\n  \"password\": \"demo123\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Login successful, returns token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"demo\",\n  \"password\": \"demo123\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Invalid credentials",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"demo\",\n  \"password\": \"demo123\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "me",
+          "item": [
+            {
+              "name": "Get current user profile (requires login token)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User profile",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Invalid or missing token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "body",
+      "item": [
+        {
+          "name": "json",
+          "item": [
+            {
+              "name": "Parse and echo a JSON body",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/body/json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "body",
+                    "json"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Echoed JSON body info",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/body/json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "body",
+                        "json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Body is not valid JSON",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/body/json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "body",
+                        "json"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "form",
+          "item": [
+            {
+              "name": "Parse and echo a URL-encoded form body",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "key_0",
+                      "value": "string"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/body/form",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "body",
+                    "form"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Echoed form fields",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "key_0",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/body/form",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "body",
+                        "form"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "validate",
+          "item": [
+            {
+              "name": "Validate required fields name and email",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"email\": \"eBp5nlN5@XgBbAfvQKKDD.bag\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/body/validate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "body",
+                    "validate"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Validation passed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"string\",\n  \"email\": \"eBp5nlN5@XgBbAfvQKKDD.bag\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/body/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "body",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Missing required fields",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"string\",\n  \"email\": \"eBp5nlN5@XgBbAfvQKKDD.bag\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/body/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "body",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "multipart",
+          "item": [
+            {
+              "name": "Accept multipart/form-data (text fields + file uploads)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "key",
+                      "value": "string",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/body/multipart",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "body",
+                    "multipart"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Echoed fields and file metadata",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "key",
+                          "value": "string",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/body/multipart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "body",
+                        "multipart"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "binary",
+          "item": [
+            {
+              "name": "Accept a raw binary body (any content type, max 10 MB)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "body": {
+                  "mode": "file",
+                  "file": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/body/binary",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "body",
+                    "binary"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Returns size and content type",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/octet-stream"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/body/binary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "body",
+                        "binary"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "graphql",
+      "item": [
+        {
+          "name": "Mock GraphQL endpoint — echoes query and variables",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"string\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GraphQL echo response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"string\",\n  \"variables\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cookies",
+      "item": [
+        {
+          "name": "set",
+          "item": [
+            {
+              "name": "Set one or more test cookies from query parameters",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cookies/set?session=abc123&maxAge=3600",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cookies",
+                    "set"
+                  ],
+                  "query": [
+                    {
+                      "key": "session",
+                      "value": "abc123",
+                      "description": "Session cookie value to set. Defaults to abc123 when no cookie query is provided."
+                    },
+                    {
+                      "key": "maxAge",
+                      "value": "3600",
+                      "description": "Optional Max-Age attribute in seconds."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Cookies were set through Set-Cookie headers",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/cookies/set?session=abc123&maxAge=3600",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cookies",
+                        "set"
+                      ],
+                      "query": [
+                        {
+                          "description": "Session cookie value to set. Defaults to abc123 when no cookie query is provided.",
+                          "key": "session",
+                          "value": "abc123"
+                        },
+                        {
+                          "description": "Optional Max-Age attribute in seconds.",
+                          "key": "maxAge",
+                          "value": "3600"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "read",
+          "item": [
+            {
+              "name": "Read incoming cookies from the Cookie request header",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cookies/read",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cookies",
+                    "read"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Parsed cookies and the raw Cookie header",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/cookies/read",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cookies",
+                        "read"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "clear",
+          "item": [
+            {
+              "name": "Clear known test cookies",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cookies/clear",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cookies",
+                    "clear"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Known test cookies were expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/cookies/clear",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cookies",
+                        "clear"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "data",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "Get a fixed list of 5 users (deterministic for response-test assertions)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/data/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data",
+                    "users"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "List of users",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/data/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "user",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get a single user by ID",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/data/user/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data",
+                        "user",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "6964"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "User found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/data/user/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "user",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "6964"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "User not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/data/user/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "user",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "6964"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get user by ID (chaining target — requires Bearer token from /auth/login)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User profile",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "debug",
+      "item": [
+        {
+          "name": "echo",
+          "item": [
+            {
+              "name": "Full debug echo — method, headers, query, body, ip",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/debug/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "debug",
+                    "echo"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Complete request snapshot",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/debug/echo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "debug",
+                        "echo"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "echo",
+      "item": [
+        {
+          "name": "Echo GET request details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "echo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Echoed request info",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "echo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Echo POST request details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "echo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Echoed request info",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "echo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Echo PUT request details",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "echo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Echoed request info",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "echo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Echo PATCH request details",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "echo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Echoed request info",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "echo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Echo DELETE request details",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "echo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Echoed request info",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "echo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Echo HEAD request (headers only, no body)",
+          "request": {
+            "method": "HEAD",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "echo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Response headers only",
+              "originalRequest": {
+                "method": "HEAD",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "echo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "CORS preflight / OPTIONS echo",
+          "request": {
+            "method": "OPTIONS",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "echo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Allowed methods",
+              "originalRequest": {
+                "method": "OPTIONS",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "echo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "headers",
+      "item": [
+        {
+          "name": "required",
+          "item": [
+            {
+              "name": "Require X-Custom-Header header",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Custom-Header",
+                    "value": "string"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/headers/required",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "headers",
+                    "required"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Header received",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Custom-Header",
+                        "value": "string"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/headers/required",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "headers",
+                        "required"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Missing X-Custom-Header",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Custom-Header",
+                        "value": "string"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/headers/required",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "headers",
+                        "required"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Echo all request headers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/headers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "headers"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "All request headers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/headers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "headers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "params",
+      "item": [
+        {
+          "name": "required",
+          "item": [
+            {
+              "name": "Require name and page query parameters",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/params/required?name=string&page=6964",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "params",
+                    "required"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page",
+                      "value": "6964"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Valid params received",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/params/required?name=string&page=6964",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "params",
+                        "required"
+                      ],
+                      "query": [
+                        {
+                          "key": "name",
+                          "value": "string"
+                        },
+                        {
+                          "key": "page",
+                          "value": "6964"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Missing required params",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/params/required?name=string&page=6964",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "params",
+                        "required"
+                      ],
+                      "query": [
+                        {
+                          "key": "name",
+                          "value": "string"
+                        },
+                        {
+                          "key": "page",
+                          "value": "6964"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Echo query parameters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/params?name=string&page=6964",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "params"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "string"
+                },
+                {
+                  "key": "page",
+                  "value": "6964"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Received query params",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/params?name=string&page=6964",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "params"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page",
+                      "value": "6964"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Server is healthy",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"status\": \"ok\",\n  \"version\": \"1.0.0\",\n  \"uptime\": 42.5,\n  \"timestamp\": \"1954-04-21T10:10:58.259Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "status",
+      "item": [
+        {
+          "name": "{code}",
+          "item": [
+            {
+              "name": "Respond with the given HTTP status code",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/status/:code",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status",
+                    ":code"
+                  ],
+                  "variable": [
+                    {
+                      "key": "code",
+                      "value": "404",
+                      "description": "HTTP status code to return"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Returns the requested status code (actual status varies)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/status/:code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "status",
+                        ":code"
+                      ],
+                      "variable": [
+                        {
+                          "key": "code",
+                          "value": "404",
+                          "description": "HTTP status code to return"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "delay",
+      "item": [
+        {
+          "name": "{ms}",
+          "item": [
+            {
+              "name": "Respond after a delay",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/delay/:ms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "delay",
+                    ":ms"
+                  ],
+                  "variable": [
+                    {
+                      "key": "ms",
+                      "value": "1505",
+                      "description": "Delay in milliseconds (max 3000)"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Delayed response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/delay/:ms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "delay",
+                        ":ms"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ms",
+                          "value": "1505",
+                          "description": "Delay in milliseconds (max 3000)"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
