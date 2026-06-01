@@ -31,6 +31,40 @@ OlympAPI is built for developers who want full control over local workflows, dat
 
 ---
 
+## Screenshots
+
+### HTTP Request with JSON Body
+
+![HTTP request with JSON body and 200 response – light mode](screenshots/BodyJSONRequestWithJsonResponse200SuccessCodeTestLightMode.png#gh-light-mode-only)
+![HTTP request with JSON body and 200 response – dark mode](screenshots/BodyJSONRequestWithJsonResponse200SuccessCodeTestDarkMode.png#gh-dark-mode-only)
+
+### Bearer Token Authentication
+
+![Bearer token auth with 200 status – light mode](screenshots/RequestWithBearerAuthWindowOpenStatus200AuthenticatedLightMode.png#gh-light-mode-only)
+![Bearer token auth with 200 status – dark mode](screenshots/RequestWithBearerAuthWindowOpenStatus200AuthenticatedDarkMode.png#gh-dark-mode-only)
+
+### Environments and Variables
+
+![Environment variables editor – light mode](screenshots/EnvironmentsWindowEnvironmentSelectedWithVariablesAndKeysEditLightMode.png#gh-light-mode-only)
+![Environment variables editor – dark mode](screenshots/EnvironmentsWindowEnvironmentSelectedWithVariablesAndKeysEditDarkMode.png#gh-dark-mode-only)
+
+### Git Sync
+
+![Git Sync collection in sync – light mode](screenshots/GitSyncWindowCollectionInSyncLightMode.png#gh-light-mode-only)
+![Git Sync collection in sync – dark mode](screenshots/GitSyncWindowCollectionInSyncDarkMode.png#gh-dark-mode-only)
+
+### Response Tests
+
+![Test assertion – status code equals 200 – light mode](screenshots/TestsAddAssertationStatusCodeEqualsWithExpectedValueLightMode.png#gh-light-mode-only)
+![Test assertion – status code equals 200 – dark mode](screenshots/TestsAddAssertationStatusCodeEqualsWithExpectedValueDarkMode.png#gh-dark-mode-only)
+
+### OpenAPI Auto Sync (Pro)
+
+![Configure OpenAPI Auto Sync – light mode](screenshots/ConfigureAutoSyncWithOpenAPISwaggerAndValidationSuiteLightMode.png#gh-light-mode-only)
+![Configure OpenAPI Auto Sync – dark mode](screenshots/ConfigureAutoSyncWithOpenAPISwaggerAndValidationSuiteDarkMode.png#gh-dark-mode-only)
+
+---
+
 ## Core Features
 
 ### Free

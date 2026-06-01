@@ -73,6 +73,9 @@ Free plan limits: 3 collections, 3 environments, 1 workspace, 1 Git Sync connect
 2. Select the HTTP method from the dropdown: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`
 3. Press **Send** (`Ctrl+Enter`)
 
+![Select HTTP request type – light mode](screenshots/RequestWindowSelectHTTPRequestTypeLightMode.png#gh-light-mode-only)
+![Select HTTP request type – dark mode](screenshots/RequestWindowSelectHTTPRequestTypeDarkMode.png#gh-dark-mode-only)
+
 ### URL Bar
 
 Supports environment variables: `{{BASE_URL}}/users/{{USER_ID}}`
@@ -116,6 +119,9 @@ Click the **Auth** tab:
 | Basic Auth | Username + Password (Base64-encoded automatically) |
 | API Key | Key name, Key value, Send as Header or Query Param |
 
+![Bearer token auth with 200 status – light mode](screenshots/RequestWithBearerAuthWindowOpenStatus200AuthenticatedLightMode.png#gh-light-mode-only)
+![Bearer token auth with 200 status – dark mode](screenshots/RequestWithBearerAuthWindowOpenStatus200AuthenticatedDarkMode.png#gh-dark-mode-only)
+
 ### Reading the Response
 
 The response panel shows:
@@ -124,6 +130,18 @@ The response panel shows:
 - **Body** with syntax highlighting (JSON, HTML, XML auto-detected)
 - **Headers** tab — all response headers
 - **Tests** tab — test results if response tests are configured (Pro)
+
+![HTTP request with JSON body and 200 response – light mode](screenshots/BodyJSONRequestWithJsonResponse200SuccessCodeTestLightMode.png#gh-light-mode-only)
+![HTTP request with JSON body and 200 response – dark mode](screenshots/BodyJSONRequestWithJsonResponse200SuccessCodeTestDarkMode.png#gh-dark-mode-only)
+
+![Request history with headers and params – light mode](screenshots/HistoryNavigationOpenWithPreviousRequestsAndHeaderRequestParamsLightMode.png#gh-light-mode-only)
+![Request history with headers and params – dark mode](screenshots/HistoryNavigationOpenWithPreviousRequestsAndHeaderRequestParamsDarkMode.png#gh-dark-mode-only)
+
+![Cookie jar management – light mode](screenshots/CookieJarManageSetCookiesAndInspectLightMode.png#gh-light-mode-only)
+![Cookie jar management – dark mode](screenshots/CookieJarManageSetCookiesAndInspectDarkMode.png#gh-dark-mode-only)
+
+![Send cookies with request parameters – light mode](screenshots/SendCookiesSetRequestWithTwoParamsAndValuesLightMode.png#gh-light-mode-only)
+![Send cookies with request parameters – dark mode](screenshots/SendCookiesSetRequestWithTwoParamsAndValuesDarkMode.png#gh-dark-mode-only)
 
 ---
 
@@ -135,6 +153,9 @@ Collections are named groups of saved requests, organized in folders.
 
 - Click the **+** icon in the sidebar header, or
 - Collections menu (⋮) → **New Collection**
+
+![Create new collection dialog – light mode](screenshots/CreateNewCollectionLightMode.png#gh-light-mode-only)
+![Create new collection dialog – dark mode](screenshots/CreateNewCollectionDarkMode.png#gh-dark-mode-only)
 
 ### Adding Requests
 
@@ -171,6 +192,12 @@ Right-click a collection name or use the ⋮ menu:
 - **Git Sync** — opens Git Sync settings for this collection
 - **Delete** — permanently deletes the collection and all its contents
 
+![Collection submenu with export options – light mode](screenshots/CollectionSubMenuWithExportOptionsForPostmanBrunoInsomniaLightMode.png#gh-light-mode-only)
+![Collection submenu with export options – dark mode](screenshots/CollectionSubMenuWithExportOptionsForPostmanBrunoInsomniaDarkMode.png#gh-dark-mode-only)
+
+![Collection settings with color selection – light mode](screenshots/CollectionSettingsWindowColorSelectionLightModeGreen.png#gh-light-mode-only)
+![Collection settings with color selection – dark mode](screenshots/CollectionSettingsWindowColorSelectionDarkModeGreen.png#gh-dark-mode-only)
+
 ---
 
 ## 4. Environments & Variables
@@ -183,6 +210,9 @@ Environments store key-value pairs that can be substituted into any part of a re
 2. **Manage Environments** → **New Environment**
 3. Name it (e.g. "Local", "Staging", "Production")
 4. Add variables
+
+![Add new environment dialog – light mode](screenshots/EnvironmentsWindowAddNewEnvironmentLightMode.png#gh-light-mode-only)
+![Add new environment dialog – dark mode](screenshots/EnvironmentsWindowAddNewEnvironmentDarkMode.png#gh-dark-mode-only)
 
 ### Using Variables
 
@@ -205,6 +235,15 @@ Check the **Sensitive** checkbox for passwords, tokens, and secrets. Sensitive v
 
 Use the environment selector dropdown at the top of the request panel. Select **None** to disable variable substitution.
 
+![Environment selector – light mode](screenshots/EnvironmentsWindowSelectEnvironmentLightMode.png#gh-light-mode-only)
+![Environment selector – dark mode](screenshots/EnvironmentsWindowSelectEnvironmentDarkMode.png#gh-dark-mode-only)
+
+![Environment variables editor – light mode](screenshots/EnvironmentsWindowEnvironmentSelectedWithVariablesAndKeysEditLightMode.png#gh-light-mode-only)
+![Environment variables editor – dark mode](screenshots/EnvironmentsWindowEnvironmentSelectedWithVariablesAndKeysEditDarkMode.png#gh-dark-mode-only)
+
+![Environment deletion confirmation – light mode](screenshots/EnvironmentsDeleteConsentWindowLightMode.png#gh-light-mode-only)
+![Environment deletion confirmation – dark mode](screenshots/EnvironmentsDeleteConsentWindowDarkMode.png#gh-dark-mode-only)
+
 ### Variable Resolution Order
 
 1. Active environment variables
@@ -221,11 +260,20 @@ Workspaces let you organize collections into separate contexts (e.g. "Work", "Pe
 
 Click the workspace selector at the top of the sidebar → **New Workspace** (Pro: unlimited, Free: 1 workspace).
 
+![Create new workspace – unlimited Pro – light mode](screenshots/CreateNewWorkspaceUnlimitedWithProLightMode.png#gh-light-mode-only)
+![Create new workspace – unlimited Pro – dark mode](screenshots/CreateNewWorkspaceUnlimitedWithProDarkMode.png#gh-dark-mode-only)
+
 ### Switching Workspaces
 
 Click the workspace name in the sidebar → select from the list.
 
 Each workspace maintains its own ordered list of collections. Switching workspaces shows only that workspace's collections.
+
+![Workspace selector – light mode](screenshots/SelectWorkspaceLightMode.png#gh-light-mode-only)
+![Workspace selector – dark mode](screenshots/SelectWorkspaceDarkMode.png#gh-dark-mode-only)
+
+![Workspace selector with open menu – light mode](screenshots/SelectWorkspaceWithOpenMenuLightMode.png#gh-light-mode-only)
+![Workspace selector with open menu – dark mode](screenshots/SelectWorkspaceWithOpenMenuDarkMode.png#gh-dark-mode-only)
 
 ### Managing Workspaces
 
@@ -271,6 +319,9 @@ If the last tab is closed, a new empty tab opens automatically.
 
 **Ctrl+Shift+A** opens the tab overview panel showing all open tabs and recently closed tabs.
 
+![Open tabs and recently closed tabs – light mode](screenshots/OpenAndRecentClosedTabsLightMode.png#gh-light-mode-only)
+![Open tabs and recently closed tabs – dark mode](screenshots/OpenAndRecentClosedTabsDarkMode.png#gh-dark-mode-only)
+
 ---
 
 ## 7. Importing Collections
@@ -288,6 +339,9 @@ Supported: OpenAPI 3.x, Swagger 2.x, JSON or YAML format.
 `GET /users` and `GET /users/{id}` both land in a folder called `users`.  
 `POST /auth/login` lands in a folder called `auth`.
 
+![Import collection dialog – light mode](screenshots/ImportCollectionLightMode.png#gh-light-mode-only)
+![Import collection dialog – dark mode](screenshots/ImportCollectionDarkMode.png#gh-dark-mode-only)
+
 ### From Postman
 
 1. Export your Postman collection as **Collection v2.1** (`.json`)
@@ -299,6 +353,29 @@ Supported: OpenAPI 3.x, Swagger 2.x, JSON or YAML format.
 Collections exported from OlympAPI can be re-imported:
 1. Sidebar → Import icon → Choose file (`.olympapi.json`)
 2. Auto-detected → Preview → Import
+
+### OpenAPI Auto Sync (Pro)
+
+Auto Sync binds a live collection to an OpenAPI/Swagger spec URL. When the spec changes, OlympAPI detects new, modified, or removed endpoints and presents a change review dialog where each change can be applied or skipped individually.
+
+**Setup:**
+1. Open a collection → ⋮ menu → **Configure Auto Sync**
+2. Enter the OpenAPI/Swagger spec URL
+3. Set polling interval (default: on-open)
+4. Click **Enable Auto Sync**
+
+![Configure OpenAPI Auto Sync – light mode](screenshots/ConfigureAutoSyncWithOpenAPISwaggerAndValidationSuiteLightMode.png#gh-light-mode-only)
+![Configure OpenAPI Auto Sync – dark mode](screenshots/ConfigureAutoSyncWithOpenAPISwaggerAndValidationSuiteDarkMode.png#gh-dark-mode-only)
+
+**Reviewing Changes:**
+
+When changes are detected, a review dialog lists each endpoint change. Apply or skip each one individually.
+
+![Review dynamic Swagger changes with apply/skip – light mode](screenshots/OpenAPIAutoSyncReviewChangesDynamicSwaggerApplySkipLightMode.png#gh-light-mode-only)
+![Review dynamic Swagger changes with apply/skip – dark mode](screenshots/OpenAPIAutoSyncReviewChangesDynamicSwaggerApplySkipDarkMode.png#gh-dark-mode-only)
+
+![Review removed endpoint change – light mode](screenshots/OpenAPIAutoSyncReviewRemovedEndpointSecondChangeLightMode.png#gh-light-mode-only)
+![Review removed endpoint change – dark mode](screenshots/OpenAPIAutoSyncReviewRemovedEndpointSecondChangeDarkMode.png#gh-dark-mode-only)
 
 ---
 
@@ -371,6 +448,9 @@ Each test has:
 - **Operator**: equals, not equals, contains, not contains, greater than, less than
 - **Expected value**
 
+![Add test assertion – status code equals – light mode](screenshots/TestsAddAssertationStatusCodeEqualsWithExpectedValueLightMode.png#gh-light-mode-only)
+![Add test assertion – status code equals – dark mode](screenshots/TestsAddAssertationStatusCodeEqualsWithExpectedValueDarkMode.png#gh-dark-mode-only)
+
 ### Examples
 
 | Target | Operator | Expected | Meaning |
@@ -379,6 +459,12 @@ Each test has:
 | Body Contains | contains | `"success": true` | Response body contains this text |
 | Header Value | equals | `application/json` | Content-Type header |
 | Response Time | less than | 500 | Must respond in under 500ms |
+
+![Health check request with 200 test passing – light mode](screenshots/HealthRequestWithStatus200CodeTestSucessfulLightMode.png#gh-light-mode-only)
+![Health check request with 200 test passing – dark mode](screenshots/HealthRequestWithStatus200CodeTestSucessfulDarkMode.png#gh-dark-mode-only)
+
+![Advanced search operators – light mode](screenshots/SearchForEqualsNotEqualsContainsDoesNotContainsGreatherLessThanLightMode.png#gh-light-mode-only)
+![Advanced search operators – dark mode](screenshots/SearchForEqualsNotEqualsContainsDoesNotContainsGreatherLessThanDarkMode.png#gh-dark-mode-only)
 
 ### Test Results
 
@@ -435,6 +521,9 @@ Git Sync connects a collection to a Git repository. Changes can be pushed and pu
 8. Click **Test Connection** → wait for green confirmation
 9. Click **Initialize Sync** → creates `collection.json`, `environments/`, and `README.md` in the repo
 
+![Git repository connection successful – light mode](screenshots/ConnectGitRepoConnectionSuccesfulLightMode.png#gh-light-mode-only)
+![Git repository connection successful – dark mode](screenshots/ConnectGitRepoConnectionSuccesfulDarkMode.png#gh-dark-mode-only)
+
 ### Pushing Changes
 
 After modifying your collection:
@@ -442,6 +531,9 @@ After modifying your collection:
 2. (Pro) A diff view shows what changed compared to the remote
 3. Enter a commit message (pre-filled with a suggestion)
 4. Click **Push** → changes are uploaded
+
+![Git Sync collection sync in progress – light mode](screenshots/GitSyncWindowCollectionSyncLightMode.png#gh-light-mode-only)
+![Git Sync collection sync in progress – dark mode](screenshots/GitSyncWindowCollectionSyncDarkMode.png#gh-dark-mode-only)
 
 ### Pulling Remote Changes
 
@@ -455,6 +547,15 @@ The status badge in the sidebar shows:
 - ☁↑ (blue) — you have unsaved local changes
 - ☁↓ (orange) — remote has changes
 - ⚠ (red) — conflict
+
+![Git Sync collection in sync – light mode](screenshots/GitSyncWindowCollectionInSyncLightMode.png#gh-light-mode-only)
+![Git Sync collection in sync – dark mode](screenshots/GitSyncWindowCollectionInSyncDarkMode.png#gh-dark-mode-only)
+
+![Git Sync after sync complete – light mode](screenshots/GitSyncWindowAfterSyncLightMode.png#gh-light-mode-only)
+![Git Sync after sync complete – dark mode](screenshots/GitSyncWindowAfterSyncDarkMode.png#gh-dark-mode-only)
+
+![Git Sync workspace view – light mode](screenshots/GitSyncWindowWorkspacePinkLightMode.png#gh-light-mode-only)
+![Git Sync workspace view – dark mode](screenshots/GitSyncWindowWorkspacePinkDarkMode.png#gh-dark-mode-only)
 
 ### Conflict Resolution
 
@@ -490,6 +591,35 @@ Use this for solo projects or when you want continuous backup to Git.
 
 Git Sync screen → **Disconnect** removes the local configuration. The remote repository is **not** deleted.
 
+### Restoring from Git
+
+Use **Restore from Git** to revert a local collection to the last committed remote state.
+
+![Restore from Git dialog – light mode](screenshots/RestoreFromGitWindowLightMode.png#gh-light-mode-only)
+![Restore from Git dialog – dark mode](screenshots/RestoreFromGitWindowDarkMode.png#gh-dark-mode-only)
+
+### What the Repository Looks Like
+
+After **Initialize Sync**, OlympAPI creates the collection structure in the repository automatically.
+
+**Before first sync (empty repository with optional README):**
+
+![Empty Forgejo repository before Git Sync](screenshots/EmptyForgeJoRepoBeforeGitSync.png)
+
+![Create README in repository before Git Sync](screenshots/CreateReadmeInRepoBeforeGitSync.png)
+
+**After first push (workspace synced):**
+
+![Repository after Git Sync with olympapi-workspace](screenshots/RepoAfterGitSyncWith-olympapi-workspace.png)
+
+![Repository now with OlympAPI collection folder after sync](screenshots/RepoNowWithOlympAPICollectionFolderAfterSync.png)
+
+**Inside the collection folder:**
+
+![Collection folder with generated README from requests](screenshots/RepoFolder-olympapi-CollectionWithGeneratedReadmeFromRequests.png)
+
+![Workspace folder after Git Sync](screenshots/RepoFolder-olympapi-workspace-AfterGitSync.png)
+
 ---
 
 ## 13. Settings
@@ -514,6 +644,9 @@ Shows your current plan (Free or Pro Lifetime). Enter invoice ID and activation 
 | HTTP Version | Force HTTP/1.x or allow HTTP/2 (ALPN negotiation) | HTTP/1.x |
 | Request Timeout | Milliseconds before request times out; 0 = never | 30000 |
 
+![Enable proxy server requests – light mode](screenshots/EnableProxyServerRequestsLightMode.png#gh-light-mode-only)
+![Enable proxy server requests – dark mode](screenshots/EnableProxyServerRequestsDarkMode.png#gh-dark-mode-only)
+
 ### Keyboard Shortcuts
 
 A read-only reference screen showing all keyboard shortcuts.
@@ -536,6 +669,9 @@ Shows platform information, app version, and install ID (useful for support requ
 | Open Tab List | `Ctrl+Shift+A` |
 | Open Settings | `Ctrl+,` |
 | Focus Sidebar Search | `Ctrl+K` |
+
+![Keyboard shortcuts reference – light mode](screenshots/KeyboardShortcutsLightMode.png#gh-light-mode-only)
+![Keyboard shortcuts reference – dark mode](screenshots/KeyboardShortcutsDarkMode.png#gh-dark-mode-only)
 
 ---
 
