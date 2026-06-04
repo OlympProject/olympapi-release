@@ -161,3 +161,17 @@ Get the latest release assets:
 - Product and licensing: contact@olympstack.com
 - Technical support: support@olympstack.com
 
+---
+
+## OlympStack Suite
+
+OlympStack is a suite of native desktop tools for developers and DevOps engineers.
+
+| App | Repository |
+|-----|------------|
+| OlympAPI | [github.com/OlympProject/olympapi-release](https://github.com/OlympProject/olympapi-release) |
+| OlympAtlas | [github.com/OlympProject/olympatlas-release](https://github.com/OlympProject/olympatlas-release) |
+| OlympCron Manager | [github.com/OlympProject/olympcron-manager-release](https://github.com/OlympProject/olympcron-manager-release) |
+| OlympSSH Commander | [github.com/OlympProject/olympssh-commander-release](https://github.com/OlympProject/olympssh-commander-release) |
+| OlympTest Manager | [github.com/OlympProject/olymptest-manager-release](https://github.com/OlympProject/olymptest-manager-release) |
+
