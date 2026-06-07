@@ -1,6 +1,6 @@
 # OlympAPI Test Scenarios
 
-64 manual test scenarios for OlympAPI workflows and the local OlympAPI test server.
+68 manual test scenarios for OlympAPI workflows and the local OlympAPI test server.
 
 **Test-App:** OlympAPI Desktop App  
 **Test-Workspace:** `OlympAPI Manual Test`  
@@ -9,11 +9,11 @@
 **Prepare Data:**
 
 - Start the test server from `OlympAPI/test-server`.
-- HTTP base URL: `http://localhost:3000`
+- HTTP base URL: `http://localhost:3001`
 - HTTPS base URL: `https://localhost:3443`
-- Create an environment `Test Server` with `BASE_URL = http://localhost:3000`.
+- Create an environment `Test Server` with `BASE_URL = http://localhost:3001`.
 - For SSL scenarios, generate certificates with `npm run gen-certs` and restart the test server.
-- For proxy scenarios, start the proxy with `npm run proxy` on port `3001`.
+- For proxy scenarios, start the proxy with `npm run proxy` on port `3002`.
 - Prepare one small text file in `uploads/sample.txt` and one binary file in `uploads/sample.bin`.
 - For Git Sync scenarios, prepare an empty GitHub, Gitea, or Forgejo repository and a PAT with repository write access.
 
@@ -1362,3 +1362,207 @@
 - Badge transitions: idle → syncing → changesFound (orange)
 
 **What to check:** Auto-rotation drives real spec diffs detectable by OlympAPI Auto Sync
+
+---
+
+## Scenario 69 - Multi-Workspace Tab Switching
+
+**Feature:** Switching to a tab of another workspace updates active workspace and environment variables
+
+**Setup:** Create two workspaces with different environments
+
+**Steps:**
+1. Create workspace `Workspace A` with environment `EnvA` (`BASE_URL = http://localhost:3001`)
+2. Create workspace `Workspace B` with environment `EnvB` (`BASE_URL = http://localhost:3002`)
+3. In workspace A, open a request `GET {{BASE_URL}}/health` in a tab
+4. Switch to workspace B, open a request `GET {{BASE_URL}}/status` in a tab
+5. Click on workspace A's tab from the tab bar
+6. Check the active workspace selector and environment variables
+7. Send the request
+
+**Expected:**
+- Clicking workspace A's tab switches the active workspace to `Workspace A`
+- Active environment automatically switches to `EnvA`
+- Request URL resolves to `http://localhost:3001/health`
+- Response returns data from localhost:3001
+- Workspace indicator in the top bar shows `Workspace A`
+- Status bar displays the correct workspace context
+
+**What to check:** Workspace context is fully restored including environment variables and workspace state
+
+---
+
+## Scenario 70 - Settings Window Top Bar
+
+**Feature:** Settings window has functional top bar with window controls
+
+**Steps:**
+1. Open Settings from main window
+2. Inspect the top bar
+3. Verify window controls are visible and functional
+4. Test minimize button
+5. Test maximize button
+6. Test close button (X)
+
+**Expected:**
+- Settings window has a visible top bar showing "Settings"
+- Window controls (minimize, maximize, close) are displayed on the right side
+- Minimize reduces window to taskbar
+- Maximize/restore toggles window size
+- Close button closes the settings window
+- Top bar can be used to drag the window
+
+**What to check:** Settings window title bar is functional and matches the main OlympAPI window style
+
+---
+
+## Scenario 71 - Settings Subwindow Top Bar
+
+**Feature:** Settings sub-windows (Environment, Proxy, etc.) have functional top bar with window controls
+
+**Setup:** Settings window is open
+
+**Steps:**
+1. In Settings, navigate to an Environments section (if opened as sub-window)
+2. Or open other sub-windows like Workspace Settings or Collection Settings
+3. Verify the top bar is present and functional
+4. Test dragging the window by the title bar
+5. Test minimize, maximize and close buttons
+
+**Expected:**
+- Each sub-window displays a top bar with its title
+- Window controls are visible and functional
+- Windows can be dragged by the title bar
+- Minimize/maximize/close buttons work correctly
+
+**What to check:** All settings-related sub-windows have consistent and functional window controls
+
+---
+
+## Scenario 72 - Git Sync Window Top Bar
+
+**Feature:** Git Sync dialog window has functional top bar with window controls
+
+**Setup:** Collection or Workspace with Git Sync menu available
+
+**Steps:**
+1. Right-click a collection → Git Sync
+2. Or open Workspace → Git Sync
+3. Inspect the Git Sync dialog window
+4. Test dragging by the title bar
+5. Test minimize and maximize buttons
+6. Test close button
+
+**Expected:**
+- Git Sync window shows a functional top bar
+- Window controls are on the right side of the title
+- Window can be dragged, minimized, maximized, and closed
+- Dialog remains stable when manipulated
+
+**What to check:** Git Sync window has the same window controls as main application
+
+---
+
+## Scenario 73 - Auto Sync Window Top Bar
+
+**Feature:** Auto Sync (OpenAPI Dynamic Sync) window has functional top bar with window controls
+
+**Setup:** Collection with Auto Sync configured or in setup mode
+
+**Steps:**
+1. Collection menu → Auto Sync Setup
+2. Inspect the Auto Sync setup window
+3. Verify top bar is present and functional
+4. Test window dragging, minimizing, maximizing and closing
+
+**Expected:**
+- Auto Sync window displays a functional top bar
+- Window controls work correctly
+- Window can be repositioned and resized via top bar
+
+**What to check:** Auto Sync window maintains window control functionality
+
+---
+
+## Scenario 74 - Import Collection Window Top Bar
+
+**Feature:** Import Collection dialog has functional top bar with window controls
+
+**Steps:**
+1. Sidebar → Import Collection
+2. Inspect the import dialog window
+3. Test dragging and window controls
+4. Try to move, resize and close the window
+
+**Expected:**
+- Import dialog shows a functional top bar
+- Window controls (minimize, maximize, close) are visible
+- All window operations are functional
+
+**What to check:** Import dialog window has standard window controls
+
+---
+
+## Scenario 75 - Tab History Popup Width
+
+**Feature:** Tab History popup displays at 50% window width for better visibility
+
+**Setup:** Multiple requests are open in tabs and history exists
+
+**Steps:**
+1. Open the Tab History panel (click on "Tab History" section in tab bar)
+2. Observe the popup width
+3. Check that all tab history items are visible without truncation
+4. Resize the main window
+5. Verify the popup adjusts proportionally
+
+**Expected:**
+- Tab History popup opens at 50% of the main window width
+- Tab names and URLs are fully visible without truncation
+- The popup is wide enough to display relevant information
+- On window resize, the popup proportionally adjusts to 50% width
+
+**What to check:** Tab History popup is readable and does not obscure critical information
+
+---
+
+## Scenario 76 - Tab History Popup Content Display
+
+**Feature:** Tab History popup shows all open tabs with clear information
+
+**Steps:**
+1. Open 5+ requests in different tabs
+2. Open Tab History popup
+3. Verify all open tabs are listed
+4. Check that workspace context is shown for each tab (if from different workspaces)
+5. Click on a tab from the history
+
+**Expected:**
+- Tab History lists all currently open tabs
+- Each entry shows tab name, request method, and URL
+- Workspace indicator is visible for cross-workspace tabs
+- Clicking a tab from the popup switches to that tab
+- Popup closes after selection or when clicking outside
+
+**What to check:** Tab History provides quick access to all open tabs with full context information
+
+---
+
+## Scenario 77 - Settings Window Control Persistence
+
+**Feature:** Settings window position and state persist across app restart
+
+**Steps:**
+1. Open Settings
+2. Move the window to a specific position
+3. Resize the window
+4. Close Settings
+5. Restart OlympAPI
+6. Open Settings again
+
+**Expected:**
+- Settings window appears at the same position
+- Window size is restored
+- Window controls remain functional
+
+**What to check:** Window state is saved and restored correctly

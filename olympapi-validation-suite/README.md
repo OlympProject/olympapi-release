@@ -2,6 +2,21 @@
 
 A dedicated Express/TypeScript test server covering every OlympAPI feature end-to-end.
 
+> This README acts as the primary user manual for the OlympAPI Validation Suite.
+
+---
+
+## Table of Contents
+
+1. [Quick Start](#quick-start)
+2. [All Endpoints](#all-endpoints)
+3. [Dynamic Sync Endpoint](#dynamic-sync-endpoint)
+4. [Credentials Reference](#credentials-reference)
+5. [Test Scenarios](#test-scenarios)
+6. [API Client Collections](#api-client-collections)
+
+---
+
 ---
 
 ## Quick Start
@@ -14,11 +29,16 @@ Pre-built images are published to GHCR for every OlympAPI release. Find the late
 
 ```bash
 docker pull ghcr.io/olympproject/olympapi-validation-suite:vX.Y.Z
+docker pull ghcr.io/olympproject/olympapi-validation-suite:latest
 docker run --rm -p 3001:3001 -p 3443:3443 \
   ghcr.io/olympproject/olympapi-validation-suite:vX.Y.Z
 ```
 
 Replace `vX.Y.Z` with the release tag. HTTPS with a self-signed cert is available immediately — no manual cert generation required.
+
+Container package pages:
+- [GitHub Packages (organization)](https://github.com/OlympProject?tab=packages&repo_name=olympapi-release)
+- [Validation Suite GHCR package](https://github.com/OlympProject/olympapi-release/pkgs/container/olympapi-validation-suite)
 
 #### Option B — Docker Compose (API + Proxy)
 
@@ -184,6 +204,10 @@ testing OlympAPI's Auto Sync feature. The active scenario changes every minute.
 
 See [`docs/TEST_SCENARIOS.md`](docs/TEST_SCENARIOS.md) for all 63 detailed test scenarios covering:
 
+Documentation views:
+- Formatted Markdown: [docs/TEST_SCENARIOS.md](docs/TEST_SCENARIOS.md)
+- Raw Markdown: [raw TEST_SCENARIOS.md](https://raw.githubusercontent.com/OlympProject/olympapi-release/main/olympapi-validation-suite/docs/TEST_SCENARIOS.md)
+
 | # | Feature |
 |---|---------|
 | 01 | GET + Environment Variable |
@@ -212,3 +236,12 @@ See [`docs/TEST_SCENARIOS.md`](docs/TEST_SCENARIOS.md) for all 63 detailed test 
 [docs/COLLECTIONS/OlympAPI Test Server - Insomnia.yaml](<docs/COLLECTIONS/OlympAPI Test Server - Insomnia.yaml>)
 [docs/COLLECTIONS/OlympAPI Test Server - Postman.json](<docs/COLLECTIONS/OlympAPI Test Server - Postman.json>)
 [docs/COLLECTIONS/OlympAPI Test Server- swagger.json](<docs/COLLECTIONS/OlympAPI Test Server- swagger.json>)
+
+---
+
+## Additional Links
+
+- [OlympAPI Releases](https://github.com/OlympProject/olympapi-release/releases)
+- [Validation Suite Directory](https://github.com/OlympProject/olympapi-release/tree/main/olympapi-validation-suite)
+- [Validation Suite README (formatted)](https://github.com/OlympProject/olympapi-release/blob/main/olympapi-validation-suite/README.md)
+- [Validation Suite README (raw)](https://raw.githubusercontent.com/OlympProject/olympapi-release/main/olympapi-validation-suite/README.md)
